@@ -1,0 +1,22 @@
+<div class="purchase-container">
+    <div class="purchase-content">
+        <div @click="openClient()">Purchase Customer</div>
+        &nbsp;
+        <div>
+            <span> Purchase Currencies </span>
+            &nbsp;
+            &nbsp;
+            <span class="action-button-dark"  @click="openCurrency()"> 
+                <i class="mdi mdi-plus"></i> add
+            </span>
+        </div>
+        
+        <transition name="slide-left">
+            <purchase-client v-show="showClient"></purchase-client>
+        </transition>
+
+        <transition name="slide-left">
+            <purchase-currency v-show="showCurrency"></purchase-currency>
+        </transition>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*! CABSOL Bureau De Change v 1.0.0 */
+@import "./assets/scss/variables.scss";
+
+// Add Custom variable here
+@import "./assets/scss/layout/_all.scss";
+@import "./assets/scss/utilities/_all.scss";
+@import "./assets/scss/custom.scss";
+@import "node_modules/bulma/sass/utilities/initial-variables.sass";
+
+//COLOR VARIABLES
+$primary: $bdc-primary;
+$info: $bdc-info;
+$success: $bdc-success;
+$warning: $bdc-warning;
+$danger: $bdc-danger;
+$dark: $bdc-dark;
+$light: $bdc-light;
+
+//FONT VARIABLES
+$family-serif: Roboto;
+$family-primary: $family-serif;
+$body-family: $family-primary;
+$body-size: 15px;
+$body-weight: $weight-normal;
+
+@import "node_modules/bulma/bulma.sass";
+@import "node_modules/bulma/sass/utilities/controls.sass";
+// @import 'node_modules/material-icons/iconfont/material-icons.scss';

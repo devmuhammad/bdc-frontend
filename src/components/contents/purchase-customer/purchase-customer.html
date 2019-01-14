@@ -1,0 +1,61 @@
+<div class="purchase-client">
+    <div class="purchase-client-header">
+        <div class="action-button-light" @click="closeClient()"> 
+            <i class="mdi mdi-close"></i> Close
+        </div>
+        <div style="color:#fff; font-weight:600; 
+        font-size:20px; align-self:center">Customer Details</div>
+        <div class="action-button-light" @click=""> 
+            <i class="mdi mdi-check"></i> Save
+        </div>
+    </div>
+    <div class="purchase-client-body">
+        <div>
+            <div class="field">
+                <label class="label" for="">Mode of Identification</label>
+                <div class="control">
+                    <div class="select is-primary">
+                    <select>
+                        <option value="">Select ID</option>
+                        <option value="">Nationa Identity Card Number</option>
+                        <option value="">Driver License</option>
+                        <option value="">Permanent Voters Card</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;
+
+        <div>
+            <div class="field">
+                <label class="label" for="">Identification Number</label>
+                <div class="control">
+                    <input class="input is-primary" type="number" placeholder="ID No.">
+                </div>
+            </div>
+        </div>
+
+        &nbsp;
+
+        <div>
+            <div class="field">
+                <label class="label" for="">Identification Expiry Date</label>
+                <div class="control">
+                    <input class="input is-primary" type="date" placeholder="12/31/1990">
+                </div>
+            </div>
+        </div>
+        &nbsp;
+
+        <div>
+            <div class="field">
+                <label class="label" for="">Biometric Verification Number (BVN)</label>
+                <div class="control">
+                    <input class="input is-primary" type="number" placeholder="BVN">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

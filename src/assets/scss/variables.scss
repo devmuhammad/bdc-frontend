@@ -1,0 +1,15 @@
+@import "utilities/colors.scss";
+/**
+* Overridable variables
+*/
+
+$bdc-primary : #1bb394 !default;
+$bdc-info : #0A1529 !default;
+$bdc-success: $green-alt-4 !default;
+$bdc-danger: $red-alt-3 !default;
+$bdc-link: $blue-dark-4 !default;
+$bdc-warning: $yellow-alt-4 !default;
+$bdc-dark: $gray-dark-5 !default;
+$bdc-light: $gray-light-3;
+$bdc-grey: $gray-dark-2; 
+$bdc-error: $red-dark-4;

@@ -1,0 +1,128 @@
+$component-bg-color: whitesmoke;
+$navbar-height:3.7rem;
+$box-shadow:0px 0px 8px 2px #eee;
+$transition-time: .3s;
+
+// *************** Global Styling ***************//
+*{
+    box-sizing: border-box;
+}
+
+html{
+    overflow: hidden!important;
+}
+
+// *************** Global Styling End ***************//
+
+
+// *************** Helper ***************//
+.mdi-15x{
+    font-size: 15px;
+}
+.mdi-18x{
+    font-size: 18px;
+}
+.mdi-20x{
+    font-size: 20px;
+}
+.mdi-24x{
+    font-size: 24px;
+}
+
+.bdc-pointer{
+    cursor: pointer;
+}
+.action-button-light{
+    cursor: pointer;
+    color:whitesmoke;
+    border-radius:5px;
+    padding:5px 10px;
+    transition: all $transition-time;
+    &:hover{
+        box-shadow: 0px 0px 6px 0px $bdc-primary;
+        color:$bdc-primary
+    }
+}
+.action-button-dark{
+    cursor: pointer;
+    color:#fff;
+    background-color: $bdc-info;
+    border-radius:5px;
+    padding:5px 10px;
+    transition: all $transition-time;
+    &:hover{
+        box-shadow: 0px 0px 6px 0px $bdc-primary;
+        color:$bdc-primary;
+    }
+}
+// *************** Helper End ***************//
+
+
+//**************** Purchase Styling *******************//
+.purchase-container{
+    background-color: $component-bg-color;
+    height:100vh;
+    padding-top:$navbar-height;
+}
+.purchase-content{
+    position: relative;
+    margin:10px;  
+    padding:20px;
+    border-radius:3px;
+    box-shadow: $box-shadow;
+    background-color: #fff;
+    height: 88.5vh;
+}
+// Purchase client details Component
+.purchase-client{
+    position: absolute;
+    top:0;
+    right:0;
+    height: 88.5vh;
+    width:50%;
+    // background: $bdc-primary;
+    border-left:1px solid whitesmoke;
+    box-shadow:$box-shadow;
+    //Header
+    .purchase-client-header{
+        background-color: $bdc-info;
+        display: flex;
+        justify-content: space-between;
+        padding:10px;
+    }
+    // Body
+    .purchase-client-body{
+        padding:20px;
+        height:80.4vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            width:5px;
+        }
+        // sidebar container scrollbar thumb styling    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            // -webkit-box-shadow:inset 0 0 6px rgba(0,8,0,0.5); 
+            background-color: transparent;
+            transition:all .2s;
+        }
+    }
+}
+
+//**************** Purchase Styling End *******************//
+
+//**************** Selling Styling *******************//
+.selling-container{
+    background-color: $component-bg-color;
+    height:100vh;
+    padding-top:$navbar-height;
+}
+.selling-content{
+    margin:10px;
+    border-radius:3px;
+    box-shadow: $box-shadow;
+    background-color: #fff;
+    height: 88.5vh
+}
+
+//**************** selling Styling End *******************//

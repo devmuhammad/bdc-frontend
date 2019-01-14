@@ -1,0 +1,9 @@
+// $navbar-height:3.25rem;
+.sidebar-toggle{
+    cursor: pointer;
+    color: $bdc-primary!important;
+    transition: all .3s;
+    &:hover{
+        color:rgba($bdc-primary,.4)!important;
+    }
+}
