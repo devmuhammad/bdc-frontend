@@ -1,22 +1,112 @@
 <div class="purchase-container">
     <div class="purchase-content">
-        <div @click="openClient()">Purchase Customer</div>
-        &nbsp;
-        <div>
-            <span> Purchase Currencies </span>
-            &nbsp;
-            &nbsp;
-            <span class="action-button-dark"  @click="openCurrency()"> 
-                <i class="mdi mdi-plus"></i> add
-            </span>
-        </div>
-        
-        <transition name="slide-left">
-            <purchase-client v-show="showClient"></purchase-client>
-        </transition>
+        <div class="columns">
+            <div class="column is-three-fifths">
+                <div class="purchase-content-top">
+                        <div class="tabs is-medium is-primary is-fullwidth bm-tabs">
+                                <ul>
+                                  <li :class="{'is-active':tab.active}" v-for="(tab, index) in tabs" :key="index">
+                                    <a @click="navigate(tab.label)"> {{ tab.label }} </a>
+                                  </li>
+                                </ul>
+                              </div> 
+                                               
+                </div>
+                <template id="purchases" v-if="activeTab === 'Purchases'">
+                    <transition name="zoom-in">
+                    <purchases></purchases>
+                    </transition>   
+                  </template>
 
-        <transition name="slide-left">
-            <purchase-currency v-show="showCurrency"></purchase-currency>
-        </transition>
+                      <template id="new purchase" v-if="activeTab === 'New Purchase'">
+                            <transition name="zoom-in">
+                            <purchase-currency :boxdisable="boxdisable" @cust_details="getcustomerdetails" @clearpurch="cleardetails" @purchase="getpurchasedet"></purchase-currency>
+                            </transition>   
+                          </template>
+
+                <template id="add customer" v-if="activeTab === 'Bidding Purchase'">
+            <transition name="zoom-in">
+            <purchase-client @bid_details="populatedetails"  @clear_bid="clear_bids" ></purchase-client>
+            </transition>   
+          </template>
+
+            </div>
+            <div v-if="activeTab === 'Bidding Purchase' || activeTab === 'New Purchase'" class="column purchase-list">
+                <table class="table is-hoverable is-narrow is-fullwidth is-striped">
+                    <thead>
+                      <tr style="font-size:15px; font-weight: bold;color:#0A1529">
+                        <th></th>
+                        <th>CURRENCY</th>
+                        <th>NOTE</th>
+                        <th>CURRENCY NO.</th>
+                        <th>RATE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(row, index) in newPurchaseList" style="font-size:14px; font-weight: bold;color:grey">
+                          <th><span class="icon has-text-danger" @click="">
+                              <i class="mdi mdi-delete mdi-18x"></i>
+                            </span></th>
+                          <td>{{row.currency}}</td>
+                          <td>{{row.note}}</td>
+                          <td>{{row.currencyno}}</td>
+                          <td>{{row.buyrate}}</td>
+                      </tr>
+                    </tbody>
+                    </table>
+                    
+                    <div class=" savebut field is-grouped is-fullwidth is-grouped-right" style=" flex-direction: row ;justify-content: space-evenly">
+                            
+                        <p class="control dash-card-amt" style="font-size:18px;">
+                          TOTAL
+                        </p>
+                        <p class="control dash-card-amt" style="font-size:18px;color:rgb(56, 62, 75)" >
+                                NGN {{purchases.totalamount}}
+                        </p>
+                          <p class="control">
+                                <a class="button is-primary" style="width:auto;padding:5px;" @click="submitPurchase">
+                                      <p style="font-size:20px">Submit</p> 
+                                </a>
+                                
+                              </p>
+                        
+                      </div>
+                      <transition name="ease-in-out">
+                          <div v-if="addcompdlete == true" class="notification is-info" style="position: absolute;z-index: 999; right:0;bottom:0;">
+                                  <button class="delete" @click="removenotif()"></button>
+                                   <p><strong>ADD ANOTHER CURRENCY?</strong></p>
+                                   &nbsp;
+                                   
+                                   <div style="display:flex; flex-direction: row; justify-content: space-around">
+                                      <p class="control">
+                                          <a class="button is-primary" style="width:50px;padding:10px;" @click="yesSubmit">
+                                                <p style="font-size:14px;">YES</p> 
+                                          </a>
+                                          
+                                        </p>
+                                      <p class="control">
+                                          <a class="button is-danger" style="width:50px;padding:10px;" @click="noSubmit">
+                                                <p style="font-size:14px;">NO</p> 
+                                          </a>
+                                          
+                                        </p>
+                                  </div>
+                                </div>
+                        </transition>
+                      <transition name="ease-in-out">
+                          <div v-if="purchaseadded == true" class="notification is-info" style="position: absolute;z-index: 999; right:0;bottom:0;">
+                                  <button class="delete" @click="removenotif()"></button>
+                                  <span class="icon has-text-success" style="padding-left: 90px;">
+                                      <i class="mdi mdi-checkbox-marked-circle mdi-24x"></i>
+                                    </span>
+                                   <p><strong>SUCCESS: PURCHASE ADDED</strong></p>
+                                   
+                                </div>
+                        </transition>        
+                </div>
+                
+        </div>
+       
     </div>
+   
 </div>

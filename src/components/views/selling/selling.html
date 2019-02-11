@@ -1,6 +1,266 @@
-<div class="selling-container">
-    <div class="selling-content">
-        <div>Selling Component</div>
+<div class="purchase-container">
+    <div class="purchase-content">
+        <div v-if="addsalesview == false" style="margin-top:20px;height:600px">
+                <div class="field is-grouped" style="padding-bottom: 3px; padding-left:500px">
+                    <div class="control">
+                                <input class="input is-primary"style="border-width: 0px 0px 1px;/* border-style: initial; *//* border-color: initial; */border-image: initial;" :disabled="boxdisable" 
+                                  type="date" placeholder="12/31/1990">
+                    </div>
+                <p class="control" >
+                        <a class="button is-primary" style="width:auto" @click="changeView">
+                          <p style="font-size:20px">New Sale</p>
+                        </a>
+                               
+                      </p>
+                      </div>
+                      
+                <table-component
+                style="height:600px"
+                ref="table"
+                :data="salesList"
+                sort-by="transaction_date"
+                sort-order="desc"
+                @rowClick=""
+                >
+                <table-column show="currency.code" label="Currency"></table-column>
+                <table-column show="transaction_ref" label="Sales Ref"></table-column>
+                <table-column show="fullname" label="Full Name"></table-column>
+                <table-column show="soldrate" label="Rate" data-type="numeric"></table-column>
+                <table-column show="transaction_date" label="Transaction Date" :filterable="false" data-type="date:DD/MM/YYYY"></table-column>
+                <table-column show="totalamount" label="Total Amount" data-type="numeric"></table-column>
+                <!-- <table-column label="" :sortable="false" :filterable="false">
+                        <template slot-scope="row">
+                           <a :href="`#${row.id}`"> Edit
+                                <i class="mdi-square-edit-outline mdi-20x"></i>
+                              </a>
+                        </template>
+                    </table-column> -->
+            </table-component>   
+        </div>
 
+        <div v-if="addsalesview == true" class="columns">
+        <div class="column is-three-fifths">
+                <div class="columns">
+                        <div class="column is-half">
+                        
+                          <div>
+                            <div class="field">
+                              <label class="label" for="">Currency</label>
+                              <div class="control">
+                                <div class="select is-fullwidth is-primary">
+                                  <select @change="getSelected" :disabled="boxdisable" v-model="selectedcurrency">
+                                    <option value="">Select Currency...</option>
+                                    <option :value="{'id':option.id,'desc':option.desc,'code':option.code}" v-for="(option, index) in currencyList"
+                                      v-text="option.code + ' - ' + option.desc"></option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                  
+                          <div>
+                  
+                            <div class="field">
+                              <label class="label" for="">Full Name</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.fullname" type="text"
+                                  placeholder="Olawale Moh">
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                          <div>
+                            <div class="field">
+                              <label class="label" for="">Identification Number</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.id_no" type="text"
+                                  placeholder="ID No.">
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                          <div>
+                  
+                            <div class="field">
+                              <label class="label" for="">Biometric Verification Number (BVN)</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.bvn" type="number"
+                                  placeholder="BVN">
+                              </div>
+                            </div>
+                          </div>
+                  
+                  
+                          &nbsp;
+                          <div>
+                                <div class="field">
+                                  <label class="label" for="">Currency No</label>
+                                  <div class="control">
+                                    <div class="select is-multiple is-fullwidth is-primary">
+                                      <select multiple size="5" @select="getmultiSelect"  v-model="currno">
+                                        <option value="">Select Currency Nums...</option>
+                                        <option :value="{'id':option.id,'currency':option.currency,'note':option.note,'currencyno':option.currencyno}" v-for="(option, index) in purchdeetList"
+                                          v-text="option.note + option.currency + ' - ' + option.currencyno"></option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                  
+                        </div>
+                  
+                        <div class="column is-half">
+                  
+                          <div>
+                            <div class="field">
+                              <label class="label" for="">Transaction Date</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.transaction_date"
+                                  type="date" placeholder="12/31/1990">
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                          <div>
+                            <div class="field">
+                              <label class="label">Mode of Identification</label>
+                              <div class="control">
+                                <div class="select is-fullwidth is-primary">
+                                  <select v-model="sales.mode_of_id" :disabled="boxdisable">
+                                    <option value="">Select ID</option>
+                                    <option value="National Identity Card Number">National Identity Card Number</option>
+                                    <option value="Driver License">Driver License</option>
+                                    <option value="Permanent Voters Card">Permanent Voters Card</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                  
+                          <div>
+                            <div class="field">
+                              <label class="label" for="">Identification Expiry Date</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.id_expirydate"
+                                  type="date" placeholder="12/31/1990">
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                  
+                          <div>
+                            <div class="field">
+                              <label class="label" for="">Selling Rate</label>
+                              <div class="control">
+                                <input class="input is-primary" :disabled="boxdisable" v-model.trim="sales.soldrate" type="number"
+                                  placeholder="23.99">
+                              </div>
+                            </div>
+                          </div>
+                          &nbsp;
+                          <!-- <div class="columns"> -->
+                            <!-- <div class="column is-half">
+                              <div class="field">
+                                <label class="label" for="">Note</label>
+                                <div class="control">
+                                  <input class="input is-primary" v-model.trim="currnote" type="number" placeholder="10 or 20 or 50 etc.">
+                                </div>
+                              </div>
+                            </div> -->
+                            <!-- <div class="column is-half"> -->
+                              <div class="field">
+                                <label class="label" for="">Quantity of Note</label>
+                                <div class="control">
+                                  <input class="input is-fullwidth is-primary" disabled v-model.trim="sales.quantity" type="number" placeholder="Quantity">
+                                </div>
+                              </div>
+                            <!-- </div> -->
+                          <!-- </div> -->
+                  
+                        </div>
+                  
+                        <!-- <div class="field">
+                                  <label class="label" for="">Total Amount</label>
+                                  <div class="control">
+                                      <input class="input is-primary" type="number" placeholder="Total amount">
+                                  </div>
+                              </div> -->
+                      </div>
+                  
+                    </div>
+                    <div>
+                      <div class=" savebut field is-grouped is-grouped-right" style="padding-right:500px">
+                        <p class="control">
+                          <a class="button is-primary" style="width:auto" @click="saveSales">
+                            <p style="font-size:20px">Save</p>
+                          </a>
+                        </p>
+                        <p class="control">
+                          <a class="button is-light" style="width:auto" @click="cleardetails">
+                            <p style="font-size:20px">Clear</p>
+                          </a>
+                        </p>
+                        <p class="control">
+                          <a class="button is-info" style="width:auto" @click="changeView">
+                            <p style="font-size:20px">Back</p>
+                          </a>
+                        </p>
+                      </div>
+        </div>
+        <div class="column purchase-list">
+             <table class="table is-hoverable is-narrow is-fullwidth is-striped">
+                    <thead>
+                      <tr style="font-size:15px; font-weight: bold;color:#0A1529">
+                        <th></th>
+                        <th>CURRENCY</th>
+                        <th>NOTE</th>
+                        <th>CURRENCY NO.</th>
+                        <th>RATE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(row, index) in sellingList" style="font-size:14px; font-weight: bold;color:grey">
+                          <th><span class="icon has-text-danger">
+                              <i class="mdi mdi-delete mdi-18x"></i>
+                            </span></th>
+                          <td>{{row.currency}}</td>
+                          <td>{{row.note}}</td>
+                          <td>{{row.currencyno}}</td>
+                          <td>{{row.soldrate}}</td>
+                      </tr>
+                    </tbody>
+                    </table>
+                    
+                    <div class=" savebut field is-grouped is-fullwidth is-grouped-right" style=" flex-direction: row ;justify-content: space-evenly">
+                            
+                        <p class="control dash-card-amt" style="font-size:18px;">
+                          TOTAL
+                        </p>
+                        <p class="control dash-card-amt" style="font-size:18px;color:rgb(56, 62, 75)" >
+                                NGN {{sales.totalamount}}
+                        </p>
+                          <p class="control">
+                                <a class="button is-primary" style="width:auto;padding:5px;" @click="submitSale">
+                                      <p style="font-size:20px">Submit</p> 
+                                </a>
+                                
+                              </p>
+                        
+                      </div>
+                      <transition name="ease-in-out">
+                            <div v-if="saleadded == true" class="notification is-info" style="position: absolute;z-index: 999; right:0;bottom:0;">
+                                    <button class="delete" @click="removenotif()"></button>
+                                    <span class="icon has-text-success" style="padding-left: 120px;">
+                                        <i class="mdi mdi-checkbox-marked-circle mdi-24x"></i>
+                                      </span>
+                                     <p><strong>SUCCESS: SALES ADDED</strong></p>
+                                     
+                                  </div>
+                          </transition>    
+        </div>
     </div>
+</div>
 </div>

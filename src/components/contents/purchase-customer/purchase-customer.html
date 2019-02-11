@@ -1,5 +1,5 @@
 <div class="purchase-client">
-    <div class="purchase-client-header">
+  <!-- <div class="purchase-client-header">
         <div class="action-button-light" @click="closeClient()"> 
             <i class="mdi mdi-close"></i> Close
         </div>
@@ -8,54 +8,142 @@
         <div class="action-button-light" @click=""> 
             <i class="mdi mdi-check"></i> Save
         </div>
+    </div> -->
+  <div class="purchase-client-body">
+
+    <div class="columns">
+      <div class="column is-half">
+        <div>
+          <div class="field ">
+            <label class="label">Purchase Mode</label>
+            <div class="control">
+              <div class="select is-fullwidth is-primary">
+                <select v-model="bid_details.mode_of_purchase">
+                  <option value="">Select Mode</option>
+
+                  <option value="Cbn">CBN</option>
+                  <option value="Bank">BANK</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        &nbsp;
+        <div>
+          <div class="field">
+            <label class="label" for="">Currency</label>
+            <div class="control">
+              <div class="select is-fullwidth is-primary">
+                <select @change="getSelected" v-model="selectedcurrency">
+                  <option value="">Select Currency...</option>
+                  <option :value="{'id':option.id,'desc':option.desc,'code':option.code}" v-for="(option, index) in currencyList"
+                    v-text="option.code + ' - ' + option.desc"></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        &nbsp;
+
+        <div>
+          <div class="field">
+            <label class="label" for="">Currency Prefix</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.currency_prefix" type="text" placeholder="AB">
+            </div>
+          </div>
+        </div>
+
+        &nbsp;
+
+        <div>
+          <div class="field">
+            <label class="label" for="">Starting Number</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.starting_no" type="number" placeholder="021">
+            </div>
+          </div>
+        </div>
+
+        &nbsp;
+
+        <div>
+          <div class="field">
+            <label class="label" for="">Quantity</label>
+            <div class="control">
+              <input class="input is-primary" disabled v-model.trim="bid_details.quantity" type="number" placeholder="1">
+            </div>
+          </div>
+        </div>
+        &nbsp;
+
+      </div>
+
+
+      <div class="column is-half">
+        <div>
+          <div class="field">
+            <label class="label" for="">Transaction Date</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.transaction_date" type="date" placeholder="12/31/1990">
+            </div>
+          </div>
+        </div>
+        &nbsp;
+        <div>
+          <div class="field">
+            <label class="label" for="">Buying Rate</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.buyingrate" type="number" placeholder="23.99">
+            </div>
+          </div>
+        </div>
+        &nbsp;
+        <div>
+          <div class="field">
+            <label class="label" for="">Currency Suffix</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.currency_suffix" type="text" placeholder="DC">
+            </div>
+          </div>
+        </div>
+
+        &nbsp;
+        <div>
+          <div class="field">
+            <label class="label" for="">Ending Number</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.ending_no" type="number" placeholder="789">
+            </div>
+          </div>
+        </div>
+
+        &nbsp;
+
+        <div>
+          <div class="field">
+            <label class="label" for="">Note</label>
+            <div class="control">
+              <input class="input is-primary" v-model.trim="bid_details.note" type="number" placeholder="10 or 20 or 50 etc.">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="savebut field is-grouped is-grouped-right">
+          <p class="control">
+            <a class="button is-primary" style="width:100px" @click="generateCurr">
+              <p style="font-size:20px">Generate</p>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-light" style="width:auto" @click="clear_bid">
+              <p style="font-size:20px">Clear</p>
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="purchase-client-body">
-        <div>
-            <div class="field">
-                <label class="label" for="">Mode of Identification</label>
-                <div class="control">
-                    <div class="select is-primary">
-                    <select>
-                        <option value="">Select ID</option>
-                        <option value="">Nationa Identity Card Number</option>
-                        <option value="">Driver License</option>
-                        <option value="">Permanent Voters Card</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        &nbsp;
-
-        <div>
-            <div class="field">
-                <label class="label" for="">Identification Number</label>
-                <div class="control">
-                    <input class="input is-primary" type="number" placeholder="ID No.">
-                </div>
-            </div>
-        </div>
-
-        &nbsp;
-
-        <div>
-            <div class="field">
-                <label class="label" for="">Identification Expiry Date</label>
-                <div class="control">
-                    <input class="input is-primary" type="date" placeholder="12/31/1990">
-                </div>
-            </div>
-        </div>
-        &nbsp;
-
-        <div>
-            <div class="field">
-                <label class="label" for="">Biometric Verification Number (BVN)</label>
-                <div class="control">
-                    <input class="input is-primary" type="number" placeholder="BVN">
-                </div>
-            </div>
-        </div>
-        
-    </div>
+  </div>
 </div>

@@ -1,0 +1,218 @@
+<div class="purchase-container">
+  <div class="purchase-content">
+
+    <div class="purchase-client-body">
+      <div style="padding:10px; flex-direction:column">
+          <transition name="ease-in-out">
+            <div v-if="addcomplete == true" class="notification is-primary" style="position: absolute;z-index: 999; right:0;top:0;">
+                    <button class="delete" @click="removenotif()"></button>
+                     <strong>Rates Successfully Added</strong>
+                  </div>
+          </transition>
+        
+        <div style="display:flex;flex-direction: row; justify-content: space-evenly;">
+          <div class="card dash-cards" @click="">
+            <header class=" bm-card-header ">
+              <div class="card-header-title" style="padding-right: 20px;
+                             padding-left: 30px; color:rgb(138, 138, 138)">
+                Official Buy Rate </div>
+              <!-- <i class="mdi mdi-dots-vertical mdi-18x"  @click="navigate('Details')"></i> -->
+            </header>
+
+            <div class="content has-text-centered">
+              <!-- <img src="" class="card-img" >     -->
+              <!-- <i class="mdi mdi-currency-ngn mdi-24x"></i> -->
+
+              <div class="dash-card-amt">
+                  {{selectedcurrency}}
+                {{newrate.buy_rate_official}} </div>
+              <div class="dash-card-foot-item"><i class="mdi mdi-arrow-up-drop-circle mdi-18x" style="color:green"></i>
+                 % 2.5 </div>
+              <!-- <span class="dash-card-foot-item">
+                {{selectedcurrency}}
+              </span> -->
+            </div>
+          </div>
+
+          <div class="card dash-cards" @click="">
+            <header class=" bm-card-header ">
+              <div class="card-header-title" style="padding-right: 20px;
+                             padding-left: 30px; color:rgb(138, 138, 138)">
+                Market Buy Rate </div>
+              <!-- <i class="mdi mdi-dots-vertical mdi-18x"  @click="navigate('Details')"></i> -->
+            </header>
+
+            <div class="content has-text-centered">
+              <!-- <img src="" class="card-img" >     -->
+              <!-- <i class="mdi mdi-currency-ngn mdi-24x"></i> -->
+
+              <div class="dash-card-amt">
+                  {{selectedcurrency}}
+                {{newrate.buy_rate_market}} </div>
+              <!-- <div class="card-desc"> 365 </div> -->
+              <span class="dash-card-foot-item">
+                  <i class="mdi mdi-arrow-down-drop-circle mdi-18x" style="color:red"></i>
+                % 1.8
+              </span>
+            </div>
+          </div>
+
+
+          <div class="card dash-cards" @click="">
+            <header class=" bm-card-header ">
+              <div class="card-header-title" style="padding-right: 20px;
+                             padding-left: 30px; color:rgb(138, 138, 138)">
+                Official Sell Rate </div>
+              <!-- <i class="mdi mdi-dots-vertical mdi-18x"  @click="navigate('Details')"></i> -->
+            </header>
+
+            <div class="content has-text-centered">
+
+              <!-- <i class="mdi mdi-currency-ngn mdi-24x"></i> -->
+
+              <div class="dash-card-amt">
+                  {{selectedcurrency}}
+                 {{newrate.sell_rate_official}} </div>
+              <!-- <div class="card-desc"> 365 </div> -->
+              <span class="dash-card-foot-item">
+                  <i class="mdi mdi-arrow-up-drop-circle mdi-18x" style="color:green"></i>
+                  % 1.3
+                
+              </span>
+            </div>
+          </div>
+
+
+          <div class="card dash-cards" @click="">
+            <header class=" bm-card-header ">
+              <div class="card-header-title" style="padding-right: 20px;
+                             padding-left: 30px; color:rgb(138, 138, 138)">
+                Market Sell Rate </div>
+              <!-- <i class="mdi mdi-dots-vertical mdi-18x"  @click="navigate('Details')"></i> -->
+            </header>
+
+            <div class="content has-text-centered">
+              <!-- <img src="" class="card-img" >     -->
+              <!-- <i class="mdi mdi-currency-ngn mdi-24x"></i> -->
+
+              <div class="dash-card-amt">
+                  {{selectedcurrency}}
+                 {{newrate.sell_rate_market}} </div>
+              <!-- <div class="card-desc"> 365 </div> -->
+              <span class="dash-card-foot-item">
+                  <i class="mdi mdi-arrow-down-drop-circle mdi-18x" style="color:red"></i>
+                  % 1.5
+                
+              </span>
+            </div>
+          </div>
+
+        </div>
+        &nbsp;
+        <span class=" is-primary" style="display:flex;justify-content:center;padding:20px;font-size:26px;font-weight:bolder">Trade Market - {{markettitle}}</span>
+        
+        <div class="columns" style="padding:10px;margin-top:5px">
+
+          <div class="column is-half is-centered ">
+            <label class="label " style="padding-left:90px;font-size: 18px">Official Buy Rate</label>
+            <div class="field has-addons has-addons-centered " style="padding-bottom:50px">
+
+              <p class="control ">
+
+                <span class="select is-primary is-fullwidth is-medium">
+                  <select v-model="selectedcurrency" @change="getSelected()" >
+                        <option      
+                        :value = "{'id':option.id,'desc':option.desc,'code':option.code}"
+                        v-for="(option, index) in currencyList"
+                        v-text="option.code" ></option>
+                  </select>
+                </span>
+              </p>
+              <p class="control ">
+                <input class="input is-primary " v-model.trim="newrate.buy_rate_official" type="text" value="349.00" placeholder="Official Buy Rate">
+
+              </p>
+              <p class="control">
+                <a class="button is-primary " @click="addrate">
+                  ADD
+                </a>
+              </p>
+
+            </div>
+
+            <label class="label " style="padding-left:90px;font-size: 18px">Market Buy Rate</label>
+            <div class="field has-addons has-addons-centered " style="padding-bottom:50px">
+              <p class="control ">
+                <span class="select is-primary is-fullwidth ">
+                  <select disabled >
+                        <option 
+                        
+                        v-for="(option, index) in currencyList"
+                        v-text="selectedcurrency" ></option>
+                  </select>
+                </span>
+              </p>
+              <p class="control ">
+                <input class="input is-primary " type="text" v-model.trim="newrate.buy_rate_market" value="358.00" placeholder="Market Buy Rate">
+
+              </p>
+              <p class="control">
+                <a class="button is-primary " @click="addrate">
+                  ADD
+                </a>
+              </p>
+            </div>
+
+          </div>
+          <div class="column is-half is-centered">
+            <label class="label " style="padding-left:90px;font-size: 18px">Official Sell Rate</label>
+            <div class="field has-addons has-addons-centered " style="padding-bottom:50px">
+              <p class="control ">
+                <span class="select is-primary is-fullwidth ">
+                  <select disabled >
+                        <option 
+                        v-for="(option, index) in currencyList"
+                        v-text="selectedcurrency" ></option>
+                    </select>
+                </span>
+              </p>
+              <p class="control ">
+                <input class="input is-primary" v-model.trim="newrate.sell_rate_official" type="text" value="360.00" placeholder="Official Sell Rate">
+
+              </p>
+              <p class="control">
+                <a class="button is-primary " @click="addrate">
+                  ADD
+                </a>
+              </p>
+            </div>
+
+            <label class="label " style="padding-left:90px;font-size: 18px">Market Sell Rate</label>
+            <div class="field has-addons has-addons-centered " style="padding-bottom:50px">
+              <p class="control ">
+                <span class="select is-primary is-fullwidth ">
+                  <select disabled >
+                        <option 
+                        v-for="(option, index) in currencyList"
+                        v-text="selectedcurrency" ></option>
+                  </select>
+                </span>
+              </p>
+              <p class="control ">
+                <input class="input is-primary " type="text" v-model.trim="newrate.sell_rate_market"  value="newrate.sell_rate_market" placeholder="Market Sell Rate">
+
+              </p>
+              <p class="control">
+                <a class="button is-primary " @click="addrate">
+                  ADD
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>

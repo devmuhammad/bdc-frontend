@@ -1,0 +1,32 @@
+<div class="" >
+      
+    <div class="" style="width: 1070px;padding:20px;padding-top:0px">
+            <table-component
+            :data="purchaseList"
+            ref="table"
+            style="height:600px"
+            sort-by="transaction_date"
+            sort-order="desc"
+            @rowClick=""
+            >
+            <table-column show="currency.code" label="Currency"></table-column>
+            <table-column show="transaction_ref" label="Purchase Ref"></table-column>
+            <table-column show="fullname" label="Full Name"></table-column>
+            <table-column show="buyingrate" label="Rate" data-type="numeric"></table-column>
+            <table-column show="transaction_date" label="Transaction Date" :filterable="false" data-type="date:DD/MM/YYYY"></table-column>
+            <table-column show="totalamount" label="Total Amount" data-type="numeric"></table-column>
+            <table-column label="" :sortable="false" :filterable="false">
+                    <template slot-scope="row">
+                       <!-- <a :href="`#${row.id}`"> Edit -->
+                        <span class="icon has-text-danger" style="cursor:pointer" @click="deletepurchase(row.id)">
+                        <i class="mdi mdi-delete mdi-18x"></i>
+                        </span>
+                        <span class="icon has-text-info" style="cursor:pointer" @click="">
+                        <i class="mdi mdi-square-edit-outline mdi-18x"></i>
+                        </span>
+                          </a>
+                    </template>
+                </table-column>
+        </table-component>
+</div>
+</div>

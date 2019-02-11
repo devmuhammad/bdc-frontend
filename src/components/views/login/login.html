@@ -1,0 +1,63 @@
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form">
+					<div class="login100-form-logo">
+                        <img src="../../../assets/images/cabsol 300x301.png"
+                            alt="cabsol logo" width="100" style="height: 100px">
+                        </div>
+					<span class="login100-form-title p-b-20 p-t-20">
+						CABSOL BDC
+					</span>
+
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" style="font-size: 16px;" type="email" @change="remVal" placeholder="Email" v-model="usercred.email">
+    <span class="icon is-small is-left">
+      <i class="mdi mdi-email"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="mdi mdi-check"></i>
+    </span>
+  </p>
+</div>
+&nbsp;
+<div class="field">
+  <p class="control has-icons-left">
+    <input class="input" type="password" style="font-size: 16px;" @change="remVal" placeholder="Password" v-model="usercred.password">
+    <span class="icon is-small is-left">
+      <i class="mdi mdi-lock"></i>
+    </span>
+  </p>
+</div>
+
+    <span style="display:flex;justify-content: center;font-size: 14px;color:rgb(211, 21, 21);">{{validationmsg}}</span>
+<label class="checkbox" style="font-size: 15px;color:#fff;padding-top:10px">
+        <input type="checkbox">
+        Remember me
+      </label>
+      &nbsp;	
+
+      <div class="field" style="padding-top:10px; display:flex;justify-content: center">
+            <p class="control">
+              <button class="button is-medium is-rounded is-success" @click="validateInput">
+                <i class="mdi mdi-key" v-if="loading == false"></i>&nbsp;<span v-if="loading == false"> LOGIN </span> 
+                <half-circle-spinner is-primary
+                v-if="loading"
+                :animation-duration="1000"
+                :size="20"
+                />
+              </button>
+            </p>
+          </div>
+
+
+		<div class="text-center p-t-10" style="color:gray">
+			<!-- <a class="txt1" href="#"> -->
+			Forgot Password?
+				<!-- </a> -->
+					</div>
+                </div>
+			</div>
+		</div>
+	</div>

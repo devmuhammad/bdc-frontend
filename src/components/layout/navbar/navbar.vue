@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
     data(){
         return{
@@ -10,7 +12,12 @@ export default {
             msg:" Sidebar"
         }
     },
-    
+    computed:{
+        ...mapGetters([
+            'isloggedIn',
+            'loggedinUser'
+        ])
+    },
     methods:{
         toggleSidebar(){
             this.showSidebar = !this.showSidebar;
@@ -37,6 +44,12 @@ export default {
                 view[0].style.setProperty('margin-left','18%');
             }
         },
+        logout(){
+            this.logoutUser()
+        },
+         ...mapActions([
+            'logoutUser'
+        ])
     }
 }
 </script>

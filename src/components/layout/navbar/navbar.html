@@ -13,6 +13,9 @@
                 <div class="navbar-item sidebar-toggle" @click="toggleSidebar()">
                     <i class="mdi mdi-menu mdi-24x"></i>
                 </div>
+                <div class="navbar-item" >
+                    <span style="font-size:26px;font-weight:bold"> CABSOL BUREAUX DE CHANGE </span>
+                </div>
             <!-- <a class="navbar-item">
                 Home
             </a>
@@ -47,7 +50,14 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class=" bdc-pointer">
-                        <i class="mdi mdi-settings-outline mdi-20x has-text-primary"></i>
+                        <i class="mdi mdi-account-circle mdi-24x has-text-primary"></i>
+                        <span style="font-size:16px; padding-left:5px; font-weight:600"> {{ loggedinUser.fullname}} (Admin)</span>
+                    </div>
+                    <div class=" bdc-pointer">
+                        <i class="mdi mdi-settings-outline mdi-24x has-text-primary"></i>
+                    </div>
+                    <div class=" bdc-pointer" @click="logout">
+                        <i class="mdi mdi-logout mdi-24x has-text-primary"></i>
                     </div>
                     <!-- <div class="buttons">
                         <a class="button is-primary">

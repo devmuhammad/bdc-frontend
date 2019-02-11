@@ -1,16 +1,16 @@
 <div class="bdc-sidebar">
-    <div class="bdc-brand"> 
-        <!-- <img src="../../../assets/images/cabsol 300x301.png" 
-        alt="cabsol logo" height="20" width="20"> -->
-        <div class="brand-name">CABSOL BDC</div> 
+    <div class="bdc-brand" style="display:flex; flex-direction: row; justify-items: center"> 
+        <img src="../../../assets/images/cabsol 300x301.png"
+        alt="cabsol logo" width="80" style="height: 80px">
+        <div class="brand-name" style="align-self: center">CABSOL BDC</div> 
     </div>
 
     <div class="sidebar-lists">
         <ul>
             <router-link v-for="(menu,index) in sidebarMenu" tag="a"
-            :key="index" :to="menu.link" exact>
+            :key="index" :to="menu.link" :click="menu.clicked" exact>
                 <li>
-                    <i :class="menu.icon"></i> 
+                    <i :class="menu.icon" ></i> 
                     <span class="sidebar-menu">{{menu.name}}</span> 
                 </li>
             </router-link> 
