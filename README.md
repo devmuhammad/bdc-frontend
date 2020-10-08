@@ -34,7 +34,7 @@ Build: “npm build” – dist file can be found in the project root folder.
 
 1.7 Repository:
 
-Url: https://github.com/dev-comsoft/CABSOL-BDC.git
+Url: https://github.com/devmuhammad/bdc-frontend.git
 Branch: master
 
 1.8 API/Endpoints:
