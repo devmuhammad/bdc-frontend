@@ -1,4 +1,4 @@
-# cabsolbdc_main
+# BUREAU DE CHANGE (FOREX TRADING MANAGER)
 
 > BUREAU DE CHANGE DOCUMENTATION (BDC) FOREX TRADING MANAGER
 
@@ -8,7 +8,7 @@ This document is a documentation of the above-mentioned software application dev
 
 1.2 Application Overview:
 
-Cabsol BDC is a FX trading management platform for “Bureau de change” operators to record and manage inflow and outflow of currencies and exchanges accurately.
+BDC is a FX trading management platform for “Bureau de change” operators to record and manage inflow and outflow of currencies and exchanges accurately.
 
 1.3 Scope:
 
@@ -26,7 +26,6 @@ Other dependencies & plugins can be found in the package.json file. It was devel
 1.5 Coding Structure:
 
 The front-end code was structured in line with the standard. A “src” tree parent folder with “layout”, “views” & “components”.
-The back-end code was structured with MVC with Models, Views, Controllers and Routers. It also includes middleware to verify all incoming requests.
 
 1.6 Build Commands:
 
