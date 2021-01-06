@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@mdi/font": "^3.3.92",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bulma": "^0.7.2",
     "epic-spinners": "^1.0.4",
     "moment": "^2.24.0",
