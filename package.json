@@ -15,7 +15,7 @@
     "bulma": "^0.7.2",
     "epic-spinners": "^1.0.4",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "vue": "^2.5.2",
