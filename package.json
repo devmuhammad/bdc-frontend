@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
     "epic-spinners": "^1.0.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
